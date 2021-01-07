@@ -15,10 +15,16 @@
             zoomOffset: -1,
         });
 
-        var map = L.map('map', {layers:[light]}).fitWorld();
+        var map = L.map('map', {layers:[light, dark]}).fitWorld();
+        var baseMaps = {
+            "light": light,
+            "dark": dark
+        };
 
+        L.control.layers(baseMaps).addTo(map);
 
     function onLocationFound(e) {
+        alert("Click OK to find your location. It will NOT share your information.");
         var radius = e.accuracy; //this defines a variable radius as the accuracy value returned by the locate method. The unit is meters.
 
         L.marker(e.latlng).addTo(map)  //this adds a marker at the lat and long returned by the locate function.
@@ -45,9 +51,10 @@
         map.addLayer(dark);
         }
         // L.circle(e.latlng, radius).addTo(map); //this adds a circle to the map centered at the lat and long returned by the locate function. Its radius is set to the var radius defined above.
+
     }
     map.on('locationfound', onLocationFound); //this is the event listener
-
+    
     function onLocationError(e) {
       alert(e.message);
     }
