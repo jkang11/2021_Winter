@@ -22,15 +22,16 @@
         };
 
         L.control.layers(baseMaps).addTo(map);
-
-    function onLocationFound(e) {
-        // alert("Click OK to find your location. It will NOT share your information.");
-
-        var radius = e.accuracy; //this defines a variable radius as the accuracy value returned by the locate method. The unit is meters.
+        function myfunction() {
+                alert("Click the star button on left side to find your location. It will only be used to find your location and your information will NOT be shared.");
+                }
         L.easyButton( '<span class="star">&starf;</span>', function(){
           alert("Click OK to find your location. It will NOT share your information.");
+          map.locate({setView: true, maxZoom: 16});
         }).addTo(map);
 
+    function onLocationFound(e) {
+        var radius = e.accuracy; //this defines a variable radius as the accuracy value returned by the locate method. The unit is meters.
         L.marker(e.latlng).addTo(map)  //this adds a marker at the lat and long returned by the locate function.
             .bindPopup("You are within " + Math.round(radius * 3.28084) + " feet of this point").openPopup(); //this binds a popup to the marker. The text of the popup is defined here as well. Note that we multiply the radius by 3.28084 to convert the radius from meters to feet and that we use Math.round to round the conversion to the nearest whole number.
         if (radius <= 100) {
@@ -64,5 +65,3 @@
     }
 
     map.on('locationerror', onLocationError);
-
-    map.locate({setView: true, maxZoom: 16});
