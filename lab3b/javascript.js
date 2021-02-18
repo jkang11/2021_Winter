@@ -56,7 +56,7 @@ function createFormPopup() {
         '<form>' +
         'Name of the place:<br><input type="text" id="input_name" value="ex: Best Italian Dining"><br>' +
         'Description:<br><input type="text" id="input_desc" value="ex: A nice italian dining experience"><br>' +
-        'Personal Opinion:<br><input type="text id="input_opinion" value="ex: I loved it"><br>' +
+        'Personal Opinion:<br><input type="text" id="input_opinion" value="ex: I loved it"><br>' +
         '<input type="button" value="Submit" id="submit">' +
         '</form>'
     drawnItems.bindPopup(popupContent).openPopup();
