@@ -13,12 +13,12 @@ var drawnItems = L.featureGroup().addTo(map);
 var cartoData = L.layerGroup().addTo(map);
 var url = "https://jkang11.carto.com/api/v2/sql";
 var urlGeoJSON = url + "?format=GeoJSON&q=";
-var sqlQuery = "SELECT the_geom, name, address, hours, phone, heated, covered FROM lab_3c_jemin";
+var sqlQuery = "SELECT the_geom, name, address, comments, phone, heated, covered FROM lab_3c_jemin";
 function addPopup(feature, layer) {
     layer.bindPopup(
         "<b>" + feature.properties.name + "</b><br>" +
         feature.properties.address + "<br>" +
-        feature.properties.hours + "<br>" +
+        feature.properties.comments + "<br>" +
         feature.properties.phone + "<br>" +
         feature.properties.heated + "<br>" +
         feature.properties.covered
@@ -59,7 +59,7 @@ function createFormPopup() {
         '<form>' +
         '<strong>Name</strong>:<br><input type="text" id="input_name"><br>' +
         '<strong>Address</strong>:<br><input type="text" id="input_address"><br>' +
-        '<strong>Hours</strong>:<br><input type="text" id="input_hours"><br>' +
+        '<strong>Comments</strong>:<br><input type="text" id="input_comments"><br>' +
         '<strong>Phone</strong>:<br><input type="tel" id="input_tel" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required><br>' +
         '<strong>Heated?</strong>:<br><input type="checkbox" id="input_heated"><br>' +
         '<strong>Covered?</strong>:<br><input type="checkbox" id="input_covered"><br>' +
@@ -80,7 +80,7 @@ function setData(e) {
         // Get user name and description
         var enteredname = document.getElementById("input_name").value;
         var enteredaddress = document.getElementById("input_address").value;
-        var enteredhours = document.getElementById("input_hours").value;
+        var enteredcomments = document.getElementById("input_comments").value;
         var enteredphone = document.getElementById("input_tel").value;
         var enteredheated = document.getElementById("input_heated").value;
         var enteredcovered = document.getElementById("input_covered").value;
@@ -90,12 +90,12 @@ function setData(e) {
     			// Create SQL expression to insert layer
                 var drawing = JSON.stringify(layer.toGeoJSON().geometry);
                 var sql =
-                    "INSERT INTO lab_3c_jemin (the_geom, name, address, hours, phone, heated, covered) " +
+                    "INSERT INTO lab_3c_jemin (the_geom, name, address, comments, phone, heated, covered) " +
                     "VALUES (ST_SetSRID(ST_GeomFromGeoJSON('" +
                     drawing + "'), 4326), '" +
                     enteredname + "', '" +
                     enteredaddress + "', '" +
-                    enteredhours + "', '" +
+                    enteredcomments + "', '" +
                     enteredphone + "', '" +
                     enteredheated + "', '" +
                     enteredcovered + "')";
@@ -124,7 +124,7 @@ function setData(e) {
             var newData = layer.toGeoJSON();
             newData.properties.name = enteredname;
             newData.properties.address = enteredaddress;
-            newData.properties.hours = enteredhours;
+            newData.properties.comments = enteredcomments;
             newData.properties.phone = enteredphone;
             newData.properties.heated = enteredheated;
             newData.properties.covered = enteredcovered;
