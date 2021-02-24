@@ -60,7 +60,7 @@ function createFormPopup() {
         '<strong>Name</strong>:<br><input type="text" id="input_name"><br>' +
         '<strong>Address</strong>:<br><input type="text" id="input_address"><br>' +
         '<strong>Comments</strong>:<br><input type="text" id="input_comments"><br>' +
-        '<strong>Phone</strong>:<br><input type="tel" id="input_tel" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required><br>' +
+        '<strong>Phone</strong>:<br><input type="tel" id="input_tel" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>' +
         '<strong>Heated?</strong>:<br><input type="checkbox" id="input_heated"><br>' +
         '<strong>Covered?</strong>:<br><input type="checkbox" id="input_covered"><br>' +
         '<input type="button" value="Submit" id="submit">' +
