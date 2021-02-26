@@ -89,5 +89,5 @@ map.addEventListener("draw:deletestop", function(e) {
 });
 
 window.onload = function(){
-                alert("IMPORTANT!!! It will never share your information with third party.");
+                alert("IMPORTANT!!! Please scroll down to read about this map.");
                 }
