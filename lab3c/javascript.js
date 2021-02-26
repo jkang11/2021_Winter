@@ -82,8 +82,8 @@ function setData(e) {
         var enteredaddress = document.getElementById("input_address").value;
         var enteredcomments = document.getElementById("input_comments").value;
         var enteredphone = document.getElementById("input_tel").value;
-        var enteredheated = document.getElementById("input_heated").value;
-        var enteredcovered = document.getElementById("input_covered").value;
+        var enteredheated = document.getElementById("input_heated").checked;
+        var enteredcovered = document.getElementById("input_covered").checked;
         // For each drawn layer
         drawnItems.eachLayer(function(layer) {
 
