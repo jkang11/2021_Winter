@@ -156,5 +156,5 @@ map.addEventListener("draw:deletestop", function(e) {
 });
 
 window.onload = function(){
-                alert("IMPORTANT!!! Please scroll down to read about this map.");
+                alert(  "This map is to collect data of restaurants in Tacoma that provide outdoor dining. Please follow instructions to submit the data.\n \n 1. Use the polygon and marker buttons on the left-top side to mark the location of restaurants.\n2. Fill in the information in pop-up window.\n3. Click Submit button to submit data.");
                 }
