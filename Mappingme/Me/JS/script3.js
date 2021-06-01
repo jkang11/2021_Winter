@@ -4,8 +4,8 @@
           var map2 = new mapboxgl.Map({
           container: 'map2',// HTML container id
           style:  'mapbox://styles/jkang1/ckicrqxxi1zli19n2sdwxazjb',// style URL
-          center: [-180.3532879, 44.8953081],// starting position as [lng, lat]
-          zoom: 2 // starting zoom
+          center: [-122.4548726, 47.2445451],// starting position as [lng, lat]
+          zoom: 10.5 // starting zoom
           });
 
 //Tacoma boundary
