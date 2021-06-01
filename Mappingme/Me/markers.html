@@ -1,0 +1,83 @@
+// //Schools
+//       var marker = new mapboxgl.Marker()
+//       .setLngLat([-122.4380, 47.2451])
+//       .addTo(map2);
+//
+//       var marker = new mapboxgl.Marker()
+//       .setLngLat([-122.4839024, 47.2615588])
+//       .addTo(map2);
+//
+//       var marker = new mapboxgl.Marker()
+//       .setLngLat([-122.5241581, 47.2462194])
+//       .addTo(map2);
+
+// 마커에 Popup이랑 이미지 추가 하기 --
+//Schools in Tacoma
+      map2.on('load', function(){
+      map2.addSource('Tac_schools', {
+                "type": "geojson",
+                "data": "Geojson/Schools.json"
+            });
+      map2.addLayer({
+                "id":"Schools",
+                "type":"circle",
+                "source":"Tac_schools",
+                "paint": {
+                    "circle-color": "white",
+                    "circle-opacity": 0.5
+                }
+              });
+          });
+
+      map2.on('click', 'Schools', function (e) {
+            new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML("School Name: " + "<b>" + e.features[0].properties.NAME + "</b>" + "<br>" + "Address: " + "<b>" + e.features[0].properties.ADDRESS + "</b>")
+            .addTo(map2);
+            });
+
+      map2.on('mouseenter', 'Schools', function () {
+          map2.getCanvas().style.cursor = 'pointer';
+            });
+
+              // Change it back to a pointer when it leaves.
+      map2.on('mouseleave', 'Schools', function () {
+          map2.getCanvas().style.cursor = '';
+            });
+
+
+
+
+
+            // enumerate ids of the layers
+                  var toggleableLayerIds = ['Schools', 'Facilities'];
+
+            // set up the corresponding toggle button for each layer
+                  for (var i = 0; i < toggleableLayerIds.length; i++) {
+                  var id = toggleableLayerIds[i];
+
+                  var link = document.createElement('a');
+                  link.href = '#';
+                  link.className = 'active';
+                  link.textContent = id;
+
+                  link.onclick = function (e) {
+                  var clickedLayer = this.textContent;
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  var visibility = map2.getLayoutProperty(clickedLayer, 'visibility');
+
+            // toggle layer visibility by changing the layout object's visibility property
+                  if (visibility === 'visible') {
+                  map2.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                  this.className = '';
+                  } else {
+                  this.className = 'active';
+                  map2.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                  }
+                  };
+
+                  var layers = document.getElementById('menu');
+                  layers.appendChild(link);
+                  }
